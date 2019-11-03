@@ -31,7 +31,6 @@ func init() {
 }
 
 func sendMsg(cmd *cobra.Command, args []string) {
-	fmt.Println(SLACK_TOKEN)
 	if msgContent == "" && msgFilePath == "" {
 		fmt.Println("Please check your input again")
 		os.Exit(1)

@@ -12,3 +12,4 @@
 *.out
 slack-notify
 dist
+test
