@@ -7,17 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// RootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "slack-notify",
-	Short: "Slack notify",
-}
-
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	Use:     "slack-notify",
+	Short:   "Slack notify",
+	Example: "SLACK_TOKEN=xoxb-... SLACK_CHANNEL=[Channel-name] ./slack-notify",
 }
 
 var (
@@ -25,7 +18,15 @@ var (
 	SLACK_CHANNEL string
 )
 
-func init() {
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	initRoot()
+}
+
+func initRoot() {
 	SLACK_TOKEN = os.Getenv("SLACK_TOKEN")
 	SLACK_CHANNEL = os.Getenv("SLACK_CHANNEL")
 	if SLACK_CHANNEL == "" || SLACK_TOKEN == "" {
